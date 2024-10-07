@@ -5,9 +5,9 @@ from datetime import datetime
 
 # List of source directories you want to back up
 SOURCE_DIRS = [
-    r"C:\Users\coolb\Documents",
-    r"C:\Users\coolb\Pictures\Pictures",
-    r"C:\Users\coolb\Desktop"
+    r"C:\Users\user\Documents",
+    r"C:\Users\user\Pictures",
+    r"C:\Users\user\Desktop"
 ]
 
 # NAS share backup directory (mapped as Z: drive)
@@ -16,12 +16,12 @@ BACKUP_DIR = r"Z:\Data\Backup"
 # Function to check if the backup directory is available
 def check_backup_dir():
     if not os.path.exists(BACKUP_DIR):
-        raise Exception(f"Backup directory {BACKUP_DIR} not found. Is the Samba share mounted?")
+        raise Exception(f"Backup directory {BACKUP_DIR} not found. Is the NAS share mounted?")
 
 # Function to copy files with progress monitoring
 def copy_files_with_progress():
     for source_dir in SOURCE_DIRS:
-        # Create destination directory within the Samba share (keeping folder names)
+        # Create destination directory within the NAS share (keeping folder names)
         folder_name = os.path.basename(source_dir)
         destination_dir = os.path.join(BACKUP_DIR, folder_name)
 
@@ -62,7 +62,7 @@ def log_message(message):
 # Main script execution
 if __name__ == "__main__":
     try:
-        check_backup_dir()  # Check if the Samba share is available
+        check_backup_dir()  # Check if the NAS share is available
         copy_files_with_progress()  # Perform the backup for all directories
     except Exception as e:
         log_message(f"Backup failed: {str(e)}")
