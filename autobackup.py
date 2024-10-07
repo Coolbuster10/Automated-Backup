@@ -55,7 +55,7 @@ def copy_files_with_progress():
 
 # Function to log messages
 def log_message(message):
-    log_file = r"C:\Users\coolb\Documents\backup.log"
+    log_file = r"C:\Users\user\Documents\backup.log"
     with open(log_file, 'a') as log:
         log.write(message + '\n')
 
